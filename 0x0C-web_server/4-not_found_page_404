@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # 404 Not Found Page
 
-apt-get update
-apt-get install -y nginx
+sudo apt-get update
+sudo apt-get install -y nginx
 
 touch /var/www/html/index.html /var/www/html/404.html
 echo "Hello World!" > /var/www/html/index.html
@@ -11,7 +11,7 @@ echo "Ceci n'est pas une page" > /var/www/html/404.html
 printf %s "server {
     listen 80;
     listen [::]:80 default_server;
-    root   root   /var/www/html/;
+    root   /var/www/html/;
     index  index.html index.htm;
 
     location /redirect_me {
@@ -25,4 +25,4 @@ printf %s "server {
     }
 }" > /etc/nginx/sites-available/default
 
-service nginx restart
+sudo service nginx restart
