@@ -47,5 +47,5 @@ frontend muadvan-frontend-https
 
 backend muadvan-backend
         balance roundrobin
-        server 129476-web-01 100.25.48.79:80 check
-        server 129476-web-02 54.90.61.147:80 check
+        server 129476-web-01 100.26.225.55:80 check
+        server 129476-web-02 54.144.137.41:80 check
