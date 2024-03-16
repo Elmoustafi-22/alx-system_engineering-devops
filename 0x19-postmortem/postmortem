@@ -1,0 +1,30 @@
+# Postmortem: Database Service Disruption
+
+## Issue Summary
+On March 15, 2024, our database service experienced an unexpected outage from 3:00 PM to 6:45 PM GMT+1, significantly impacting user experience. Approximately 75% of users encountered difficulties with account operations and data retrieval due to slow response times and timeouts. The root cause was a misconfigured database migration script, leading to excessive memory consumption and service disruption.
+
+## Timeline
+- **3:00 PM**: Outage begins.
+- **3:05 PM**: Automated monitoring alerts for abnormal memory usage.
+- **3:10 PM**: SRE team begins investigation, suspecting a memory leak.
+- **3:30 PM**: Increase in user complaints reported; impact becomes apparent.
+- **4:00 PM**: Application update deemed unrelated; rollback initiated.
+- **4:45 PM**: Incident escalated to database administration for further investigation.
+- **5:15 PM**: Flawed migration script identified.
+- **6:45 PM**: Database service restored after script optimization and server reboot.
+
+## Root Cause and Resolution
+The outage stemmed from a misconfigured migration script lacking proper memory management, causing a surge in memory usage beyond infrastructure capacity. Resolution involved optimizing the script and rebooting the server to clear the memory bottleneck.
+
+## Corrective and Preventative Measures
+### Improvements
+- Establish more rigorous code review processes, particularly for critical infrastructure scripts.
+
+### Tasks
+- Update database server with latest security patches and performance enhancements.
+- Enhance monitoring capabilities to include detailed database performance metrics.
+- Review all existing and future migration scripts for memory management issues.
+- Initiate continuous education program for engineering teams on database management best practices.
+
+This postmortem underscores our commitment to service reliability and performance standards. By learning from this incident and implementing proactive measures, we aim to fortify our systems against future challenges.
+
