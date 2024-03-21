@@ -1,10 +1,9 @@
-exec {'replace-1':
-  provider => shell,
-  command  => 'sudo sed -i "s/nofile 5/nofile 50000/" /etc/security/limits.conf',
-  before   => Exec['replace-2'],
+# sets new values
+
+exec { 'change-max-open-files-hard-limit':
+  command => "/bin/sed -i /etc/security/limits.conf -e 's/hard nofile [0-9]\+/hard nofile 4000/g'"
 }
 
-exec {'replace-2':
-  provider => shell,
-  command  => 'sudo sed -i "s/nofile 4/nofile 40000/" /etc/security/limits.conf',
+exec { 'change-max-open-files-soft-limit':
+  command => "/bin/sed -i /etc/security/limits.conf -e 's/soft nofile [0-9]\+/soft nofile 3000/g'"
 }
